@@ -1,5 +1,4 @@
 def loss(x,y,w):
-    #This a Regression without numpy
     nd=len(x)   
     n=len(x[0]) 
     s=0.0
@@ -48,11 +47,10 @@ def graddes(x,y,a,w0,loops=100,limit=1e-5,options=1):
         loopswitch=0
         l=0
         for j in range(nd+1):
-            if grad(x,y,wn)[j]>=limit:
+            if abs(grad(x,y,wn)[j])>=limit:
                 loopswitch=1
                 l+=1
                 break
-        print(loopswitch)
         while loopswitch:
             wtem=wn
             for j in range(nd+1):
@@ -60,22 +58,14 @@ def graddes(x,y,a,w0,loops=100,limit=1e-5,options=1):
             print(l,chr(9),wn,chr(9),"loss=",loss(x,y,wn))
             loopswitch=0
             for j in range(nd+1):
-                if grad(x,y,wn)[j]>=limit:
+                if abs(grad(x,y,wn)[j])>=limit:
                     loopswitch=1
                     l+=1
                     break
         print("total:",l,"final w:",wn)
+        print(grad(x,y,wn))
     return wn
-x=[[1,2,3,4,5]]
+x=[[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15]]
 y=[2,4,6,8,10]
-w0=[0.5,2.5]
+w0=[0.5,2.5,3.0,4.0]
 graddes(x,y,0.01,w0,options=2)
-
-            
-            
-        
-        
-    
-    
-    
-
