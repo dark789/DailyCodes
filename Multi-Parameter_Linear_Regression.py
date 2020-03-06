@@ -1,4 +1,5 @@
 def loss(x,y,w):
+    #This a Regression without numpy
     nd=len(x)   
     n=len(x[0]) 
     s=0.0
